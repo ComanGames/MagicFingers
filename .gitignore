@@ -46,7 +46,6 @@ obj/
 *.user
 *.unityproj
 *.booproj
-
 # ============ #
 # OS generated #
 # ============ #
@@ -105,7 +104,6 @@ artifacts/
 *_p.c
 *_i.h
 *.ilk
-*.meta
 *.obj
 *.pch
 *.pdb
