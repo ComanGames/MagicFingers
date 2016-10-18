@@ -10,7 +10,7 @@ namespace GameQuest
         [Range(0,10)]
         public float LineFat = 2;
 
-        [Range(0,1)]
+        [Range(0,100)]
         public float CurveStep =0.1f;
 
         public AnimationCurve Curve;
