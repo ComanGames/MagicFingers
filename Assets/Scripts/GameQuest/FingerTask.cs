@@ -27,7 +27,9 @@ namespace GameQuest
             if (UpdateCure)
                 realCurve = curve;
             float realLength = DotLineLength(dots);
-            Vector3[] curvedDots = DotsFromCurve(curve, dots, realLength, GizmosSettings.CurveStepSize);
+
+            Debug.Log( "In Tangent" +curve.keys[1].inTangent +" Out Tangent" + curve.keys[1].outTangent);
+            Vector3[] curvedDots = DotsFromCurve(realCurve, dots, realLength, GizmosSettings.CurveStepSize);
             for (int i = 1; i < curvedDots.Length; i++)
                 Debug.DrawLine(curvedDots[i - 1], curvedDots[i]);
 
@@ -44,54 +46,73 @@ namespace GameQuest
         {
             int dotsCount = (int)(totalLength / step) + 1;
             float realDotsDistance = totalLength / (float)dotsCount;
-            Vector3[] result = new Vector3[dotsCount];
+            List<Vector3> result = new List<Vector3>();
 
             float currentDistance = 0;
             int realDotIndex = 0;
             float pastDistance = 0;
-            for (int i = 0; i < result.Length - 1; i++)
+            while (currentDistance<totalLength)
             {
-                float lerp = curve.Evaluate(currentDistance);
-                Debug.Log("curve[realDotIndex].time =" + curve.keys[realDotIndex].time + " Current distance" + currentDistance);
-
-
-                if (curve.keys[realDotIndex].time < currentDistance)
+                if (realDotIndex < curve.keys.Length -2  && (currentDistance >= curve.keys[realDotIndex+1].time-realDotsDistance))
                 {
+                    currentDistance = curve.keys[realDotIndex + 1].time + realDotsDistance;
                     realDotIndex++;
                     pastDistance = currentDistance;
-                    Debug.Log("Real dot index =" + realDotIndex + "currentDistance" + currentDistance);
+                    continue;
                 }
-                float lerpX = (currentDistance - pastDistance) / (Vector3.Distance(realDots[realDotIndex], realDots[realDotIndex + 1]));
+                float lerp = curve.Evaluate(currentDistance);
+
+                float lerpX = (currentDistance - pastDistance)/
+                              (Vector3.Distance(realDots[realDotIndex], realDots[realDotIndex + 1]));
                 float x = Mathf.Lerp(realDots[realDotIndex].x, realDots[realDotIndex + 1].x, lerpX);
-                float y = Mathf.Lerp(realDots[realDotIndex].y, realDots[realDotIndex + 1].y, lerp % 1f);
-                result[i] = new Vector3(x, y, 0);
+                float y = Mathf.Lerp(realDots[realDotIndex].y, realDots[realDotIndex + 1].y,GizmosSettings.AngleSmooth.Evaluate(lerpX));
+
+                result.Add(new Vector3(x, y, 0));
                 currentDistance += realDotsDistance;
+
             }
 
-            result[result.Length - 1] = realDots[realDots.Length - 1];
+            result.Add(realDots[realDots.Length - 1]);
 
-            return result;
+            return result.ToArray();
         }
 
         private AnimationCurve SmoothDots(Vector3[] dots)
         {
             AnimationCurve anim = new AnimationCurve();
-            float outTangent = GizmosSettings.LineCurve.keys[0].outTangent;
-            float inTangent = GizmosSettings.LineCurve.keys[1].inTangent;
-            anim.AddKey(new Keyframe(0, 0, inTangent, 0));
+
+            Vector3 dot1 = dots[0];
+            Vector3 dot2 = dots[1];
+            Vector3 dot3 = dots[2];
+
+
+            anim.AddKey(new Keyframe(0, 0,0, 0));
 
             float totalLength = DotLineLength(dots);
 
             float totalTime = 0;
-            for (int i = 1; i < dots.Length; i++)
+            for (int i = 1; i < dots.Length-1; i++)
             {
-                totalTime += (Vector3.Distance(dots[i - 1], dots[i]));
+                 dot1 = dots[i - 1];
+                 dot2 = dots[i];
+                 dot3 = dots[i+1];
+                totalTime += (Vector3.Distance(dot1, dot2));
                 float time = totalTime;
                 float height = (float)i;
-                anim.AddKey(new Keyframe(time, height, inTangent, outTangent));
+                anim.AddKey(new Keyframe(time, height,inTangent,outTangent));
             }
+            totalTime += (Vector3.Distance(dot1, dot2));
+            anim.AddKey(new Keyframe(totalTime,dots.Length-1, 0, 0));
 
             return anim;
+        }
+
+        private static float Tang(Vector3 dot1, Vector3 dot2)
+        {
+            float tang;
+            float angle = Vector3.Angle(dot1, dot2);
+            tang = Mathf.Tan(angle);
+            return tang;
         }
 
         private static float DotLineLength(Vector3[] dots)

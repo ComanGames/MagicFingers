@@ -13,19 +13,20 @@ namespace GameQuest
         [Range(0,1)]
         public float CurveStep =0.1f;
 
-        public AnimationCurve AngleCure;
+        public AnimationCurve Curve;
 
-        public static AnimationCurve LineCurve { get; set; }
+
         public static float SphereSize { get; set; }
         public static float LineFatSize { get; set; }
         public static float CurveStepSize { get; set; }
+        public static AnimationCurve AngleSmooth { get; set; }
 
         public void OnDrawGizmos()
         {
             SphereSize = DotSize;
             LineFatSize = LineFat;
-            LineCurve = AngleCure;
             CurveStepSize = CurveStep;
+            AngleSmooth = Curve;
         }
     }
 }
