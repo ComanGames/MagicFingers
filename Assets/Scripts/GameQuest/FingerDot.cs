@@ -7,6 +7,7 @@ namespace GameQuest
     {
         public bool IsActive { get; set; }
         private Action _actionToCall;
+        
 
         public void Start()
         {
@@ -20,6 +21,11 @@ namespace GameQuest
                 _actionToCall();
                 _actionToCall = null;
             }
+        }
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.DrawSphere(transform.position,GizmosSettings.SphereSize);
         }
 
         public void CallOnCollistion(Action actionToDo)
