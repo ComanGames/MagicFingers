@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace GameQuest
@@ -9,7 +7,6 @@ namespace GameQuest
     public class FingerTask : MonoBehaviour
     {
         public bool UpdateCure;
-        public AnimationCurve realCurve;
         public FingerDot[] FingerDots;
         private Queue<FingerDot> _dotsQueue;
         private FingerDot _currentDot;
