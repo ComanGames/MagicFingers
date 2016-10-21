@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using UnityEngine;
 
-namespace GameQuest
+namespace LevelDesignTools
 {
     public class MeshSquare
     {

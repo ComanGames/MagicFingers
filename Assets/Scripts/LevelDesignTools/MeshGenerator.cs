@@ -1,10 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameQuest
+namespace LevelDesignTools
 {
-    public class MeshGenerator
+    public static class MeshGenerator
     {
+
+        public static Mesh MeshFromCurve(Vector3[] curvedDots)
+        {
+            Mesh mesh = LinesFromDots(curvedDots);
+            mesh.name = "MeshFromLine - " + mesh.GetHashCode();
+            return mesh;
+        }
         public static Mesh LinesFromDots(Vector3[] dots, bool autoRotate=true)
         {
             List<MeshSquare> squares =new List<MeshSquare>();
