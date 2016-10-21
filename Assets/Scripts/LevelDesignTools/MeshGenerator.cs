@@ -6,17 +6,29 @@ namespace LevelDesignTools
     public static class MeshGenerator
     {
 
-        public static Mesh MeshFromCurve(Vector3[] curvedDots)
+        public static Mesh MeshFromCurve(Curve curve)
         {
-            Mesh mesh = LinesFromDots(curvedDots);
+            if (curve == null)
+                return null;
+            Mesh mesh = LinesFromDots(curve);
             mesh.name = "MeshFromLine - " + mesh.GetHashCode();
             return mesh;
         }
-        public static Mesh LinesFromDots(Vector3[] dots, bool autoRotate=true)
+        public static Mesh LinesFromDots(Curve curve, bool autoRotate=true)
         {
             List<MeshSquare> squares =new List<MeshSquare>();
-            for (int i = 0; i < dots.Length-1; i++)
-                squares.Add(new MeshSquare(dots[i],dots[i+1],GizmosSettings.LineFatSize));
+            if (curve.CurveDots == null)
+                return null;
+            CurveDot curveDot = curve.CurveDots[0];
+            CurveDot curveDotNext = curve.CurveDots[1];
+            squares.Add(new MeshSquare(curveDot.Point, curveDotNext.Point, curveDot.Angle, GizmosSettings.LineFatSize));
+            for (int i = 1; i < curve.CurveDots.Length; i++)
+            {
+                 curveDot = curve.CurveDots[i-1];
+                 curveDotNext = curve.CurveDots[i];
+                squares.Add(new MeshSquare(curveDot.Point,curveDotNext.Point,curveDot.Angle,GizmosSettings.LineFatSize));
+            }
+
             Mesh joinedSquares = JoinSquers(squares.ToArray());
 
             return joinedSquares;

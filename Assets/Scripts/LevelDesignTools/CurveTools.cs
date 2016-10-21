@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameQuest;
 using UnityEngine;
 
 namespace LevelDesignTools
@@ -38,9 +39,12 @@ namespace LevelDesignTools
             return curvedPoints.ToArray();
         }
 
-        public  static Vector3[] MakeSmoothCurve(Vector3[] arrayToCurve, float smoothness)
+        public  static Curve MakeSmoothCurve(FingerDot[] FingerDots, float smoothness)
         {
-            
+            Vector3[] arrayToCurve = new Vector3[FingerDots.Length];
+            for (int i = 0; i < FingerDots.Length; i++)
+                arrayToCurve[i] = FingerDots[i].transform.position;
+
             Vector3[] outPutArr = new Vector3[arrayToCurve.Length];
             Array.Copy(arrayToCurve,outPutArr,arrayToCurve.Length);
             float[] distScale = new float[arrayToCurve.Length];
@@ -58,7 +62,17 @@ namespace LevelDesignTools
                 }
 
             }
-            return SmoothDots(outPutArr, smoothness);
+            return new Curve(SmoothDots(outPutArr, smoothness));
         }
+
+        public static Curve MakeLine(FingerDot[] fingerDots)
+        {
+            List<Vector3> dots = new List<Vector3>();
+            foreach (FingerDot dot in fingerDots)
+                dots.Add(dot.transform.position);
+
+            return new Curve(dots.ToArray());
+    }
+
     }
 }

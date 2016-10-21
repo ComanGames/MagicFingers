@@ -13,7 +13,7 @@ namespace LevelDesignTools
         public int[] Vertices;
         public Vector3[] Dots;
 
-        public MeshSquare(Vector3 startPoint,Vector3 finalPoint,float fat,bool withRot=true)
+        public MeshSquare(Vector3 startPoint,Vector3 finalPoint,Vector3 direction,float fat,bool withRot=true)
         {
             LeftDown = startPoint - (Vector3.up*fat/2f); //0
             LeftUp = startPoint + (Vector3.up*fat/2f); //1
@@ -25,8 +25,6 @@ namespace LevelDesignTools
             {
                 Vector3 center = Vector3.Lerp(startPoint, finalPoint, 0.5f);
                 Vector3 hulfOfWidth= Vector3.Distance(startPoint,finalPoint)*Vector3.right*0.5f;
-                float angle =Vector3.Angle(new Vector3(0,1,0),(finalPoint-startPoint).normalized);
-                Vector3 direction = new Vector3(0,0, ( (startPoint.x<finalPoint.x)?90-angle:angle+90));
 
                 LeftDown = center -hulfOfWidth - (Vector3.up * fat / 2f); //0
                 LeftUp = center -hulfOfWidth + (Vector3.up * fat / 2f); //0
