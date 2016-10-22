@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GameQuest;
 using UnityEngine;
 
@@ -10,14 +11,12 @@ namespace LevelDesignTools
         public static Vector3[] SmoothDots(Vector3[] arrayToCurve, float smoothness)
         {
             List<Vector3> curvedPoints;
-            int pointsLength = 0;
-            int curvedLength = 0;
 
             if (smoothness < 1.0f) smoothness = 1.0f;
 
-            pointsLength = arrayToCurve.Length;
+            var pointsLength = arrayToCurve.Length;
 
-            curvedLength = (pointsLength*Mathf.RoundToInt(smoothness)) - 1;
+            var curvedLength = (pointsLength*Mathf.RoundToInt(smoothness)) - 1;
             curvedPoints = new List<Vector3>(curvedLength);
 
             for (int pointInTimeOnCurve = 0; pointInTimeOnCurve < curvedLength + 1; pointInTimeOnCurve++)
@@ -74,5 +73,29 @@ namespace LevelDesignTools
             return new Curve(dots.ToArray());
     }
 
+        public static Curve MakeThirdDotLine(FingerDot[] fingerDots,float smoothes)
+        {
+            List<Vector3> totalPoints = new List<Vector3>();
+            for (int i = 0; i < fingerDots.Length-1; i++)
+            {
+                var dotsToSmooth = new List<Vector3>();
+                FingerDot left = fingerDots[i];
+                FingerDot right = fingerDots[i+1];
+
+                dotsToSmooth.Add(left.transform.position);
+                if (left.RightDot != null)
+                    dotsToSmooth.Add(left.RightDot.position);
+
+                if (right.LeftDot != null)
+                    dotsToSmooth.Add(right.LeftDot.position);
+
+                dotsToSmooth.Add(right.transform.position);
+                List<Vector3> smoothDots = SmoothDots(dotsToSmooth.ToArray(),smoothes).ToList();
+                smoothDots.RemoveAt(smoothDots.Count-1);
+                totalPoints.AddRange(smoothDots);
+            }
+            totalPoints.Add(fingerDots[fingerDots.Length-1].transform.position);
+            return new Curve(totalPoints.ToArray());
+        }
     }
 }

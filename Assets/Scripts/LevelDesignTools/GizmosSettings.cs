@@ -16,15 +16,17 @@ namespace LevelDesignTools
         [Range(0,100)]
         public int CoinCount = 10;
 
-        public AnimationCurve Curve;
+        [Range(0, 10)]
+        public float SizeOfCube = 1;
+
 
 
         public static float SphereSize { get; set; }
         public static float LineFatSize { get; set; }
         public static float CurveStepSize { get; set; }
         public static int CoinCountSize { get; set; }
+        public static float CubeSize { get; set; }
 
-        public static AnimationCurve AngleSmooth { get; set; }
 
         public void OnDrawGizmos()
         {
@@ -32,7 +34,7 @@ namespace LevelDesignTools
             LineFatSize = LineFat;
             CurveStepSize = CurveStep;
             CoinCountSize = CoinCount;
-            AngleSmooth = Curve;
+            CubeSize = SizeOfCube;
         }
     }
 }

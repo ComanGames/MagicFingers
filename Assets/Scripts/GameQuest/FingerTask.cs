@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LevelDesignTools;
 using UnityEngine;
 
 namespace GameQuest
@@ -7,16 +8,18 @@ namespace GameQuest
     {
         public TaskGizmo GizmoTask;
         private FingerDot _currentDot;
+        public Curve OurCurve;
+        public bool IsDrawing;
 
         public void InitTask()
         {
             StartNextTask();
         }
 
-
         public void OnDrawGizmos()
         {
-            GizmoTask.UpdateGizmo(transform);
+            if (IsDrawing) 
+                OurCurve = GizmoTask.UpdateGizmo(transform);
         }
 
         public void StartNextTask()
