@@ -18,7 +18,7 @@ namespace Controllers
             throw new System.NotImplementedException();
         }
 
-        public virtual InputData[] GetInputs()
+        public virtual DataPoint[] GetInputs()
         {
             throw new System.NotImplementedException();
         }

@@ -1,1 +1,481 @@
-﻿ 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="ea97c75f-cee0-45c1-99a7-fa1d646b8c4e" name="PlatrformFactory" linkedPackageId="80dc00ef-6331-47b4-8910-bd31c5c94473" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="38d30fb4-1bf7-4e56-a8b5-830a76bf45aa">
+      <profileInstance Id="b9bd9631-f00f-4ee6-9e0f-22e010bb8b8d" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="8d2f482e-79a7-4854-aada-5eb9d0efe322">
+      <profileInstance Id="f10e4e9f-0fd8-46c2-a5a1-7da54e6a3d8c" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="25fadb1c-6d71-46d8-9ebd-6deddd247d58" name="PlatrformFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="7294dc60-b278-48dc-9436-8ec8e49f235a" />
+        <suppliersInternal>
+          <dependency Id="fd49c0f6-57bd-4574-a617-fd078b01ba45">
+            <classMoniker Id="46ef09cf-d783-48d0-a14c-666a79d07448" LastKnownName="AbstractPlatformFactory" />
+            <elementDefinition Id="a24cf13a-c725-42d3-afca-3e55a67a6f17" />
+          </dependency>
+        </suppliersInternal>
+        <ownedAttributesInternal>
+          <property Id="b9ddcd29-3d9f-4bd1-9383-10071afa0ce2" name="_instance" visibility="Private" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="69bef037-45bf-4caf-aa61-d885af6d05ba" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="60d29102-d636-423c-be22-5d4910dc21a5" LastKnownName="AbstractPlatformFactory" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="46d23188-0a6c-4f5a-b4ef-5021ca76366b" name="GetInstance" visibility="Private" isLeaf="false" isStatic="true" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="51e31655-d5ec-42b6-98ec-a97eb9a3c9a1" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="4b0687aa-1331-44f1-a6b5-9e35aef40ff3" direction="Return" isUnique="false">
+                  <elementDefinition Id="cc8b2ff4-f9f4-42b7-9116-ea97e9e5acd8" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="6f4daad7-19aa-4c12-adfe-1bbf6dc439b4" LastKnownName="AbstractPlatformFactory" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="46ef09cf-d783-48d0-a14c-666a79d07448" name="AbstractPlatformFactory" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d4e246f9-d342-466d-a2a0-e71390187f2b" />
+        <ownedOperationsInternal>
+          <operation Id="29684123-543d-440a-ac08-afd5b213478a" name="GetController" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="eaa655f0-de11-47e9-b7bc-c674d32b6d8b" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="678ffc03-af37-4765-8051-1973058e30ed" direction="Return">
+                  <elementDefinition Id="b406c12c-a41b-4406-bd19-d8dc542d8ca6" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="c429364e-a9d2-4efc-a53e-eb7e560af2d5" LastKnownName="AbstractController" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="60d29102-d636-423c-be22-5d4910dc21a5" name="AbstractPlatformFactory" isAbstract="false" isLeaf="false" cachedFullName="MagicFingerModel::AbstractPlatformFactory">
+        <elementDefinition Id="d4e246f9-d342-466d-a2a0-e71390187f2b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="6f4daad7-19aa-4c12-adfe-1bbf6dc439b4" name="AbstractPlatformFactory" isAbstract="false" isLeaf="false" cachedFullName="MagicFingerModel::AbstractPlatformFactory">
+        <elementDefinition Id="d4e246f9-d342-466d-a2a0-e71390187f2b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="27c5e430-76bd-4e3b-95fb-1a65d97fdf08" name="AbstractController" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="3b506e1d-f3e0-4eb4-9e5c-6547f0abcc0b" />
+        <suppliersInternal>
+          <dependency Id="97584f9e-3ad7-47e6-84db-6821aa0dd19b">
+            <classMoniker Id="3157d26b-4f51-4d92-8a49-b09bd2af42bc" LastKnownName="DataPoint" />
+            <elementDefinition Id="ae1f31fb-c253-41b9-bec1-aa66738c9b33" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="0a00c785-02ae-4880-aa1c-f3522ad60b54" isSubstitutable="false">
+            <classMoniker Id="aa0744b3-d930-4bcb-a469-5514183efc44" LastKnownName="EditorController" />
+            <elementDefinition Id="dfbc5d0f-56a1-4b10-8035-ec6122349739" />
+          </generalization>
+          <generalization Id="2181cd5a-8720-481e-b714-b1eb5bb88f58" isSubstitutable="false">
+            <classMoniker Id="a3b9f034-204c-451c-be12-a60017384245" LastKnownName="AndroidController" />
+            <elementDefinition Id="a788ded5-860e-466f-8485-4c830e3c246e" />
+          </generalization>
+          <generalization Id="ec850314-3d81-4f97-bd44-7d788e76c3db" isSubstitutable="false">
+            <classMoniker Id="7182291c-0ff5-41a7-af68-26351bd71a79" LastKnownName="WindowsPhoneController" />
+            <elementDefinition Id="e4a35e67-eb9e-432a-963a-26bb5d5c99c5" />
+          </generalization>
+          <generalization Id="5cbc1577-db7b-401a-96df-af428e2b65f0" isSubstitutable="false">
+            <classMoniker Id="dc82aeca-e83c-49d5-9cbe-3d3754205dc0" LastKnownName="WindowsController" />
+            <elementDefinition Id="e5f233c3-47dc-4d2e-a378-50d25ab48ece" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="a880e791-f2eb-4dfa-9fba-cfbde1c31f68" name="Intialize" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="2f52ed2d-da03-4572-9c5e-2364cf3c27cb" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="bcc1f26f-990b-4c0b-bd0e-0d1f443d3691" name="camera" direction="In" isUnique="false">
+                  <elementDefinition Id="d5687aed-6eab-42bb-9ace-70f8ac6b2c6d" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="2fb7cc32-af10-46de-a244-200bd7496854" LastKnownName="Camera" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="22a341fc-c230-4572-bcb4-1cfa128f2e89" name="Update" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="92d3e36d-5238-4e65-9ee7-2110d0e30448" />
+          </operation>
+          <operation Id="16d96241-64d7-409b-8c2d-a3ac4b5ca5f4" name="GetInputs" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1eacd57c-3a59-4ed2-88f6-4fc6e610fa72" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="9baf4fd5-48da-4b74-810f-c4f958c7e267" direction="Return" isUnique="false">
+                  <elementDefinition Id="e2ccf081-5496-4389-b926-c4add20c0370" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="7629b35f-2536-47b9-8f0a-812c0b589c66" LastKnownName="DataPoint[]" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="50da3406-0768-4e6b-b844-4989546b47b4" name="IsActive" isLeaf="false" isStatic="false" isAbstract="true" concurrency="Sequential" isQuery="false">
+            <appliedStereotypesInternal>
+              <stereotypeInstance Id="57ff8ef1-f971-40e6-b642-78462a291826" name="TextTemplateBindings" profile="TextTemplateBindings">
+                <elementDefinition Id="a9895180-6660-49c4-8264-7066f53e31fa" />
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="89ce4dd7-3fc0-415b-8d42-58185466d4d0">
+                    <propertyInstance Id="3d321147-69e9-4535-98c5-4d68e6ed3fb9" name="Alias">
+                      <elementDefinition Id="d39e27fa-5b58-4235-aa24-0cb65935915f" />
+                    </propertyInstance>
+                    <elementDefinition Id="fb7cb388-3e1c-4259-90ab-093c04606921" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="a546afa9-dd72-46d8-81ef-599c012b59ec">
+                    <propertyInstance Id="de35d93b-a2ac-40e8-956c-abdd1c1873e9" name="TemplateFilePath">
+                      <elementDefinition Id="5efd0e4e-113f-4308-ad5c-b2392204092a" />
+                    </propertyInstance>
+                    <elementDefinition Id="7593346d-cd42-4137-a94a-2bf088b2f5ba" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="69bb50aa-e226-4b87-9f59-f4642f370f33">
+                    <propertyInstance Id="7173aa1a-b1dd-4340-bf8a-d69173082d45" name="ProjectPath">
+                      <elementDefinition Id="16a2ff91-e329-40c9-b7aa-efa5bc876397" />
+                    </propertyInstance>
+                    <elementDefinition Id="5f9b47ae-70b1-4bd3-9a32-c8d53560da9b" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="29129853-f6e7-4962-8d22-c0594f27c13a">
+                    <propertyInstance Id="98e2f4c1-3090-4f22-9d7c-f68d29ba33b9" name="TargetDirectory">
+                      <elementDefinition Id="6e5989d6-3a27-40d7-87a1-b1ecec47bed6" />
+                    </propertyInstance>
+                    <elementDefinition Id="15393429-c516-441f-b179-1bb1fd89e81f" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="cf7ad1ab-9fa8-401f-a01b-33c63d544107">
+                    <propertyInstance Id="bc955c59-6117-4dc5-8be5-052f64ecb590" name="TargetName">
+                      <elementDefinition Id="16e791b3-96b4-4507-86a6-0a73ef9f08c7" />
+                    </propertyInstance>
+                    <elementDefinition Id="0afefff4-13a1-4e5b-a147-a5ea35701bf2" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="8c1f1481-5fec-4698-84ed-577ec5cdee7f">
+                    <propertyInstance Id="dd25de52-2428-438c-ac28-bd22e9c272c9" name="Overwrite">
+                      <elementDefinition Id="9044e003-91a4-48ea-8f5e-4147aa62fc26" />
+                    </propertyInstance>
+                    <elementDefinition Id="9d82e9b0-c0b7-4ef4-aeda-e9b84aed1ff0" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances Id="1c519d09-6cd6-48dc-9aee-c7ef3f6a52ee">
+                    <propertyInstance Id="135c5dea-709e-4233-8756-09bbf97c0caf" name="Parameters">
+                      <elementDefinition Id="93fadacd-5f08-4ee0-81b8-d52e7a35d036" />
+                    </propertyInstance>
+                    <elementDefinition Id="5249044a-955e-4ae5-9d92-3f611b2ab143" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <elementDefinition Id="b9d93ed4-847d-4f80-a700-c9ed7f74ca08" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="20b3e503-1a78-480d-86b1-0eeb0d993e3d" direction="Return">
+                  <elementDefinition Id="225f49dd-f37f-43e9-a928-4ab614c90bce" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="54937b46-f523-4805-8daf-a01b9ff7562d" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation Id="1e1322bb-905c-43bd-b16a-721194821d96" name="WorldPoint" visibility="Protected" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="f8e96bbc-4c37-4a21-828f-c4e6f3623fce" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e5589247-de36-45ee-9988-33e700a79685" name="postion" direction="In" isUnique="false">
+                  <elementDefinition Id="ff9b8f4e-5005-4dc8-8eba-021e26c9b6f9" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="025015d0-7843-4961-b69d-93ef294e8641" LastKnownName="Vector3" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f3c185a5-7ba4-498f-902e-c96d9d519ae1" direction="Return" isUnique="false">
+                  <elementDefinition Id="5dcd1113-3406-4372-8547-31b94e05be86" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="025015d0-7843-4961-b69d-93ef294e8641" LastKnownName="Vector3" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="d928a602-b54a-49ec-97cb-96d4e78986b0" name="AndroidFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="e33dd385-efd1-48ae-988c-6751fbebb878" />
+        <suppliersInternal>
+          <dependency Id="339b17ca-963b-4567-9a42-0552a2667059">
+            <classMoniker Id="a3b9f034-204c-451c-be12-a60017384245" LastKnownName="AndroidController" />
+            <elementDefinition Id="f223d7d1-3762-4695-ae4c-a8771b2ccc0e" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="e1433046-b5c6-4e8c-8b54-d50d72d8f304" isSubstitutable="false">
+            <classMoniker Id="46ef09cf-d783-48d0-a14c-666a79d07448" LastKnownName="AbstractPlatformFactory" />
+            <elementDefinition Id="0525020c-4c7b-406d-a1f6-b1f369706cfe" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="b8b2d62a-3630-4379-b4f5-ba1dcfdcfd48" name="GetController" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="5935c5c8-6d67-4ab7-b20b-0ab5feb3a640" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="c27b2bb5-4c3b-42ca-8513-26cea2a04148" direction="Return">
+                  <elementDefinition Id="938290ba-7b6a-4df8-87cd-91b79e3810d1" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="c429364e-a9d2-4efc-a53e-eb7e560af2d5" LastKnownName="AbstractController" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="6e604235-9c99-4c3d-9415-851c344df6a8" name="WindowsFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="a2276a4a-c098-4fee-a9ec-44d042759327" />
+        <suppliersInternal>
+          <dependency Id="22b4c773-a6f0-452e-90bf-8d1d3d2240b6">
+            <classMoniker Id="dc82aeca-e83c-49d5-9cbe-3d3754205dc0" LastKnownName="WindowsController" />
+            <elementDefinition Id="890bbfb2-2842-4452-9f6f-639fe92e6822" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="d6114c3b-b7a2-48ae-b960-6abaec2e34a0" isSubstitutable="false">
+            <classMoniker Id="46ef09cf-d783-48d0-a14c-666a79d07448" LastKnownName="AbstractPlatformFactory" />
+            <elementDefinition Id="60f75771-ef42-4cc7-994b-7da002dd8fd2" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="f22d3246-c3a3-4c20-81ca-04122a35812a" name="GetController" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="1769ca2e-48db-4a8f-9abd-20761f15bd2c" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="e16192c2-2c4f-4021-8554-b992ba54a32d" direction="Return">
+                  <elementDefinition Id="3da9897b-8e2b-40e0-845c-85d2ce326a6a" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="c429364e-a9d2-4efc-a53e-eb7e560af2d5" LastKnownName="AbstractController" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="12cc80ea-0f2d-46c1-9158-70805806f898" name="EditorFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f972bb7c-d0ca-41fc-a987-592924588ff9" />
+        <suppliersInternal>
+          <dependency Id="5a1aebb3-74a4-4e2f-bdfa-fdf4d24ebf43">
+            <classMoniker Id="d928a602-b54a-49ec-97cb-96d4e78986b0" LastKnownName="AndroidFactory" />
+            <elementDefinition Id="242e8a85-d54e-4d17-b47a-c5865e6f312c" />
+          </dependency>
+          <dependency Id="b4a4dcb0-3c69-4453-87db-16281407c316">
+            <classMoniker Id="aa0744b3-d930-4bcb-a469-5514183efc44" LastKnownName="EditorController" />
+            <elementDefinition Id="6bdc21c5-413d-4127-a06b-c9c4534fdf19" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="e9c34692-a789-4c0c-9c6b-70701d955020" isSubstitutable="false">
+            <classMoniker Id="46ef09cf-d783-48d0-a14c-666a79d07448" LastKnownName="AbstractPlatformFactory" />
+            <elementDefinition Id="57e5348e-47ad-45ba-b3b5-28cd2b526091" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="27986746-72da-4921-b3ef-498a3de93b3d" name="GetController" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="56b62878-6a7d-407b-a30e-9b9c09d56dd3" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="f0825110-ffe5-4cdb-b8d4-af08da323c8f" direction="Return">
+                  <elementDefinition Id="dcd56e7f-aa19-4aaf-85e1-86562a5745fd" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="c429364e-a9d2-4efc-a53e-eb7e560af2d5" LastKnownName="AbstractController" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="c429364e-a9d2-4efc-a53e-eb7e560af2d5" name="AbstractController" isAbstract="false" isLeaf="false" cachedFullName="MagicFingerModel::AbstractController">
+        <elementDefinition Id="3b506e1d-f3e0-4eb4-9e5c-6547f0abcc0b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="90228213-0745-4fd3-afa2-649095ec2020" name="AbstractAds" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="5333fa63-66c7-4fad-b1c0-0d8f2af37ba5" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0432abf5-a14d-485d-9d6c-2037465c1368" name="AbstractGameService" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="85fdd329-e26c-44ae-a054-96b091d0703f" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="45339bed-c277-4ef9-9df8-8607676693ec" name="AbstractController" isAbstract="false" isLeaf="false" cachedFullName="MagicFingerModel::AbstractController">
+        <elementDefinition Id="3b506e1d-f3e0-4eb4-9e5c-6547f0abcc0b" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="54cbd43e-80a6-4728-9d0b-1df5b7da474e" name="WindowsPhoneFactory" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="bc7eaf6f-811a-4ebb-b1df-ca15a3a8a21d" />
+        <suppliersInternal>
+          <dependency Id="76868b8c-8b6b-46fc-92e3-033dad7667f3">
+            <classMoniker Id="7182291c-0ff5-41a7-af68-26351bd71a79" LastKnownName="WindowsPhoneController" />
+            <elementDefinition Id="a4d759de-82a9-47f0-83f5-093df5558582" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization Id="62d177c2-806b-4c02-9e9c-c7ebfb15ab72" isSubstitutable="false">
+            <classMoniker Id="46ef09cf-d783-48d0-a14c-666a79d07448" LastKnownName="AbstractPlatformFactory" />
+            <elementDefinition Id="088eddee-9941-485e-9792-7e3dc59550eb" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation Id="b83663c6-24cb-4e9c-8b87-873f6f210463" name="GetController" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="d7938900-397e-4dc9-8f99-5acb817e2b28" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="77e92243-d93d-4586-95c1-037dd69d798c" direction="Return">
+                  <elementDefinition Id="5097a1f6-5e51-4f01-b16b-809665abb346" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="45339bed-c277-4ef9-9df8-8607676693ec" LastKnownName="AbstractController" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="1530b86e-529e-410d-834d-1678bc9619e9" name="AbstractScreen" isAbstract="true" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="d42afa70-d2d4-44ae-89a2-327abd1887b0" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="3157d26b-4f51-4d92-8a49-b09bd2af42bc" name="DataPoint" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ca73421f-71de-481f-8931-196017f838a2" />
+        <ownedAttributesInternal>
+          <property Id="5226703c-5314-4118-9323-7733b7c50e4d" name="Position" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="76db3dae-79ae-434a-a6b8-3c46d79d8776" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="025015d0-7843-4961-b69d-93ef294e8641" LastKnownName="Vector3" />
+            </type_NamedElement>
+          </property>
+          <property Id="792a37e4-3c5d-4dcc-8c4f-0401824988a7" name="IsActive" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6194423b-198a-45e2-ba24-61fa5a85f618" />
+            <type_NamedElement>
+              <referencedTypeMoniker Id="5a503ec4-1907-48ea-9cc2-5ba6d9cc4ee4" LastKnownName="Boolean" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="172c87cb-4a13-4fbf-a960-c604eb39ac58" name="DataPoint" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="bc4ec128-f778-419e-ac6f-afa78b73f016" />
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="ba0c0ac3-5d81-4771-a749-67375c1afbfe" name="postion" direction="In">
+                  <elementDefinition Id="99b79b38-cdc4-45b7-938b-1f18cd55680c" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="025015d0-7843-4961-b69d-93ef294e8641" LastKnownName="Vector3" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter Id="252f9cc1-11d4-44b0-846d-9df5fe08dce4" name="isActive" direction="In">
+                  <elementDefinition Id="38818f2b-342f-4ed0-83ff-11702b2f262e" />
+                  <type_NamedElement>
+                    <referencedTypeMoniker Id="5a503ec4-1907-48ea-9cc2-5ba6d9cc4ee4" LastKnownName="Boolean" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <packageHasNamedElement>
+      <referencedType Id="025015d0-7843-4961-b69d-93ef294e8641" name="Vector3" isAbstract="false" isLeaf="false" cachedFullName="Vector3">
+        <elementDefinition Id="56bb574c-d1ee-4340-82b2-632604016bbe" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="5a503ec4-1907-48ea-9cc2-5ba6d9cc4ee4" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="2fb7cc32-af10-46de-a244-200bd7496854" name="Camera" isAbstract="false" isLeaf="false" cachedFullName="Camera">
+        <elementDefinition Id="82556bcf-d03a-4a30-a6cc-bca7a97394d8" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="7629b35f-2536-47b9-8f0a-812c0b589c66" name="DataPoint[]" isAbstract="false" isLeaf="false" cachedFullName="DataPoint[]">
+        <elementDefinition Id="06f9ffd2-14ad-4f8a-b8d1-6ee0c74b06c4" />
+      </referencedType>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <referencedType Id="54937b46-f523-4805-8daf-a01b9ff7562d" name="Boolean" isAbstract="false" isLeaf="false" cachedFullName="Boolean">
+        <elementDefinition Id="8943dc84-709e-4f62-b15a-a3273aa6f165" />
+      </referencedType>
+    </packageHasNamedElement>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="aa0744b3-d930-4bcb-a469-5514183efc44" name="EditorController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="fd1c7821-9146-4574-a23f-c3d2b601c9dc" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a3b9f034-204c-451c-be12-a60017384245" name="AndroidController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="8d0b9ee7-cfdc-4980-af10-3ac1cd9f2e50" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="dc82aeca-e83c-49d5-9cbe-3d3754205dc0" name="WindowsController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="78b23647-efef-4ca4-be90-c7c68177b497" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="7182291c-0ff5-41a7-af68-26351bd71a79" name="WindowsPhoneController" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="9d781702-5dc2-49d8-bcc5-826cd78be81b" />
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="80dc00ef-6331-47b4-8910-bd31c5c94473" name="MagicFingerModel">
+    <elementDefinition Id="068f44f2-f0d9-42be-9801-63e969ac2947" />
+    <profileInstances>
+      <packageHasProfileInstances Id="1b8d816b-156e-4b36-96fa-0390fb61bfc0">
+        <profileInstance Id="d2ed93ff-70c7-4466-b54b-896fcc84c6c0" name="TextTemplateBindings">
+          <elementDefinition Id="b1141cd6-5364-4b48-acad-6c3c64640606" />
+        </profileInstance>
+        <elementDefinition Id="e3673333-5b9c-4b00-aaa8-2729c62098d6" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

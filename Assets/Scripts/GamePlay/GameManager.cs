@@ -24,7 +24,7 @@ namespace GamePlay
 
         private void ControllerUpdate()
         {
-            List<InputData> inputs = new List<InputData>();
+            List<DataPoint> inputs = new List<DataPoint>();
             //Collect all touches
             for (int j = 0; j < _currentContrllers.Length; j++)
             {

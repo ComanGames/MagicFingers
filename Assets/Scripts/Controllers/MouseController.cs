@@ -25,11 +25,11 @@ namespace Controllers
     }
 
 
-        public override InputData[] GetInputs()
+        public override DataPoint[] GetInputs()
         {
             if (_isActive == false)
                 return null;
-            return new[] { new InputData(_currentPostion,true)};
+            return new[] { new DataPoint(_currentPostion,true)};
 
         }
     }
