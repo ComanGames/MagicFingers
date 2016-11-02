@@ -4,18 +4,18 @@ namespace Controllers
 {
     public class TouchAndroidController :BaseController
     {
-        private InputData[] _currentInputs;
+        private DataPoint[] _current;
         public override void Update()
         {
-            _currentInputs = new InputData[Input.touchCount];
+            _current = new DataPoint[Input.touchCount];
             if (Input.touchCount > 0)
             {
                 _isActive = true;
-                for (int i = 0; i < _currentInputs.Length; i++)
+                for (int i = 0; i < _current.Length; i++)
                 {
                     Touch currenTouch = Input.touches[i];
                     Vector2 pointPostion = PointToWorldPoint(currenTouch.position);
-                    _currentInputs[i] = new InputData(pointPostion, true);
+                    _current[i] = new DataPoint(pointPostion, true);
                 }
             }
             else
@@ -24,9 +24,9 @@ namespace Controllers
             }
         }
 
-        public override InputData[] GetInputs()
+        public override DataPoint[] GetInputs()
         {
-            return _currentInputs;
+            return _current;
         }
     }
 }

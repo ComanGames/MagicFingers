@@ -7,7 +7,7 @@ namespace Controllers
         void Initialize(Camera main,float zDistance);
         bool IsActive();
         void Update();
-        InputData[] GetInputs();
+        DataPoint[] GetInputs();
         
     }
 }
