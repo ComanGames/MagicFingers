@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Controllers
+namespace PlatfromTools.Controllers
 {
     public class DataPoint
     {

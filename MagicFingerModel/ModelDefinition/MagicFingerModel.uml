@@ -27,7 +27,7 @@
     <packageHasNamedElement>
       <class
         Id="7294dc60-b278-48dc-9436-8ec8e49f235a"
-        name="PlatrformFactory"
+        name="PlatrformTools"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -120,6 +120,78 @@
                     <classMoniker
                       Id="3b506e1d-f3e0-4eb4-9e5c-6547f0abcc0b"
                       LastKnownName="AbstractController"
+                      LastKnownLocation="MagicFingerModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="852c9984-3b64-4770-a53e-e447fe8ddf85"
+            name="GetAds"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fca85061-b447-433a-bb0b-e4f3f01c35f5"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5333fa63-66c7-4fad-b1c0-0d8f2af37ba5"
+                      LastKnownName="AbstractAds"
+                      LastKnownLocation="MagicFingerModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="c7f129c7-5105-426c-8861-293d851b6101"
+            name="GetGameService"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="19a32092-5eef-4d2a-a0e4-02f25caabe75"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="85fdd329-e26c-44ae-a054-96b091d0703f"
+                      LastKnownName="AbstractGameService"
+                      LastKnownLocation="MagicFingerModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="235fd345-4df4-4fc3-991a-12468c9fb3aa"
+            name="GetScreenInfo"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b64b238b-3e06-4d9c-af50-29558eac7184"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="d42afa70-d2d4-44ae-89a2-327abd1887b0"
+                      LastKnownName="AbstractScreenInfo"
                       LastKnownLocation="MagicFingerModel.uml" />
                   </type_NamedElement>
                 </parameter>
@@ -368,6 +440,13 @@
               LastKnownName="AndroidController"
               LastKnownLocation="MagicFingerModel.uml" />
           </dependency>
+          <dependency
+            Id="69d97d4c-4b32-481d-baba-8bf3166408d2">
+            <classMoniker
+              Id="d7b94c0c-5b4b-4b5d-8295-a22fa063007b"
+              LastKnownName="AndroidAds"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -419,6 +498,13 @@
             <classMoniker
               Id="78b23647-efef-4ca4-be90-c7c68177b497"
               LastKnownName="WindowsController"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </dependency>
+          <dependency
+            Id="5f3f8b1f-f2f8-44ae-a2af-9bd4e206321d">
+            <classMoniker
+              Id="cd3b9b91-48ab-4be5-8e68-b936715fc4e0"
+              LastKnownName="WindowsAds"
               LastKnownLocation="MagicFingerModel.uml" />
           </dependency>
         </suppliersInternal>
@@ -481,6 +567,13 @@
               LastKnownName="EditorController"
               LastKnownLocation="MagicFingerModel.uml" />
           </dependency>
+          <dependency
+            Id="92534132-047e-4e57-974a-23cffd155b02">
+            <classMoniker
+              Id="d8598e65-8385-4a94-b2a1-763a32eb109d"
+              LastKnownName="EditorAds"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -530,7 +623,42 @@
         name="AbstractAds"
         isAbstract="true"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="33295107-4a68-49b4-9a1f-66391714a371"
+            isSubstitutable="false">
+            <classMoniker
+              Id="6613eb03-a439-481f-85ef-17defe5ada63"
+              LastKnownName="WindowsPhoneAds"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </generalization>
+          <generalization
+            Id="f9d9524e-4df5-46f5-b622-fb470afa59e7"
+            isSubstitutable="false">
+            <classMoniker
+              Id="cd3b9b91-48ab-4be5-8e68-b936715fc4e0"
+              LastKnownName="WindowsAds"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </generalization>
+          <generalization
+            Id="5c85d673-1f43-44ee-b21f-4686df745487"
+            isSubstitutable="false">
+            <classMoniker
+              Id="d7b94c0c-5b4b-4b5d-8295-a22fa063007b"
+              LastKnownName="AndroidAds"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </generalization>
+          <generalization
+            Id="6cd68cef-3004-4de3-9c95-14c8740e42d9"
+            isSubstitutable="false">
+            <classMoniker
+              Id="d8598e65-8385-4a94-b2a1-763a32eb109d"
+              LastKnownName="EditorAds"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -553,6 +681,13 @@
             <classMoniker
               Id="9d781702-5dc2-49d8-bcc5-826cd78be81b"
               LastKnownName="WindowsPhoneController"
+              LastKnownLocation="MagicFingerModel.uml" />
+          </dependency>
+          <dependency
+            Id="a2748c79-9ee1-407a-97b0-cb1ad4248dbd">
+            <classMoniker
+              Id="6613eb03-a439-481f-85ef-17defe5ada63"
+              LastKnownName="WindowsPhoneAds"
               LastKnownLocation="MagicFingerModel.uml" />
           </dependency>
         </suppliersInternal>
@@ -596,7 +731,7 @@
     <packageHasNamedElement>
       <class
         Id="d42afa70-d2d4-44ae-89a2-327abd1887b0"
-        name="AbstractScreen"
+        name="AbstractScreenInfo"
         isAbstract="true"
         isLeaf="false"
         isActiveClass="false" />
@@ -764,6 +899,38 @@
       <class
         Id="9d781702-5dc2-49d8-bcc5-826cd78be81b"
         name="WindowsPhoneController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d8598e65-8385-4a94-b2a1-763a32eb109d"
+        name="EditorAds"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d7b94c0c-5b4b-4b5d-8295-a22fa063007b"
+        name="AndroidAds"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="cd3b9b91-48ab-4be5-8e68-b936715fc4e0"
+        name="WindowsAds"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6613eb03-a439-481f-85ef-17defe5ada63"
+        name="WindowsPhoneAds"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />

@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
-using Controllers;
+using PlatfromTools;
+using PlatfromTools.Controllers;
 using UnityEngine;
 
 namespace GamePlay
 {
     public class GameManager:MonoBehaviour
     {
-        public bool TestTouch;
         public FingerPoolManager FingerPool;
         public Camera MainCamera;
         public float ZDistance;
-        private IController[] _currentContrllers;
+        private AbstractController _currentContrllers;
 
         public void Start()
         {
-            _currentContrllers = ControllerUtilities.ControllerForCurrentPlatform(MainCamera, ZDistance,TestTouch);
+            _currentContrllers = PlatformUtilities.GetController(MainCamera, ZDistance);
         }
 
         public void Update()
@@ -26,12 +26,9 @@ namespace GamePlay
         {
             List<DataPoint> inputs = new List<DataPoint>();
             //Collect all touches
-            for (int j = 0; j < _currentContrllers.Length; j++)
-            {
-                _currentContrllers[j].Update();
-                if (_currentContrllers[j].IsActive())
-                    inputs.AddRange(_currentContrllers[j].GetInputs());
-            }
+                _currentContrllers.Update();
+                if (_currentContrllers.IsActive())
+                    inputs.AddRange(_currentContrllers.GetInputs());
 
             //Making fingers for all touches
             if (inputs.Count > 0)

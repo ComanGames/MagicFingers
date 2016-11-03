@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Controllers
+namespace GamePlay
 {
     public class FingerPoolManager : MonoBehaviour
     {

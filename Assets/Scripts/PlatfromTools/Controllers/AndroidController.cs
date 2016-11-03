@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Controllers
+namespace PlatfromTools.Controllers
 {
-    public class TouchAndroidController :BaseController
+    public class AndroidController :AbstractController
     {
         private DataPoint[] _current;
         public override void Update()
@@ -10,7 +10,7 @@ namespace Controllers
             _current = new DataPoint[Input.touchCount];
             if (Input.touchCount > 0)
             {
-                _isActive = true;
+                IsActivated = true;
                 for (int i = 0; i < _current.Length; i++)
                 {
                     Touch currenTouch = Input.touches[i];
@@ -20,13 +20,17 @@ namespace Controllers
             }
             else
             {
-                _isActive = false;
+                IsActivated = false;
             }
         }
 
         public override DataPoint[] GetInputs()
         {
             return _current;
+        }
+
+        public AndroidController(Camera camera, float zDistance) : base(camera, zDistance)
+        {
         }
     }
 }

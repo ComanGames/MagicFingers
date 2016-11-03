@@ -1,23 +1,24 @@
 ﻿using UnityEngine;
 
-namespace Controllers
+namespace PlatfromTools.Controllers
 {
-    public class MouseController : BaseController 
+    public class MouseController : AbstractController 
     {
         private Vector2 _currentPostion;
+
 
         public override void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            _isActive = true;
+            IsActivated = true;
         }
-        else if ((!Input.GetMouseButton(0))&& _isActive)
+        else if ((!Input.GetMouseButton(0))&& IsActivated)
         {
-            _isActive = false;
+            IsActivated = false;
         }
 
-        if (_isActive)
+        if (IsActivated)
         {
             Vector3 position = Input.mousePosition;
             _currentPostion = PointToWorldPoint(position);
@@ -27,10 +28,14 @@ namespace Controllers
 
         public override DataPoint[] GetInputs()
         {
-            if (_isActive == false)
+            if (IsActivated == false)
                 return null;
             return new[] { new DataPoint(_currentPostion,true)};
 
+        }
+
+        public MouseController(Camera camera, float zDistance) : base(camera, zDistance)
+        {
         }
     }
 }
