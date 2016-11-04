@@ -1,21 +1,17 @@
-﻿using PlatfromTools.Ads;
+﻿using System.Diagnostics;
+using PlatfromTools.Ads;
 using PlatfromTools.Controllers;
 using PlatfromTools.GameServices;
 using PlatfromTools.ScreenInfos;
-using UnityEngine;
 
 namespace PlatfromTools.Platforms
 {
     public class EditorPlatform : AbstractPlatform
     {
-        public EditorPlatform(Camera gameCamera, float zDistance) : base(gameCamera, zDistance)
-        {
-        }
-
 
         protected override AbstractController[] InitControllers()
         {
-            return new AbstractController[] {new AndroidController(GameCamera,ZDistance) ,  new MouseController(GameCamera, ZDistance) };
+            return new AbstractController[] {new AndroidController() ,  new MouseController() };
         }
 
         public override AbstractScreenInfo GetScreenInfo()

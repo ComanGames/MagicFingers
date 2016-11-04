@@ -10,12 +10,7 @@ namespace PlatfromTools.Platforms
     {
         protected override AbstractController[] InitControllers()
         {
-            return new AbstractController[] {new AndroidController(GameCamera,ZDistance)};
-        }
-
-        public override AbstractController GetController()
-        {
-            return new AndroidController(GameCamera,ZDistance);
+            return new AbstractController[] {new AndroidController()};
         }
 
         public override AbstractScreenInfo GetScreenInfo()
@@ -33,6 +28,5 @@ namespace PlatfromTools.Platforms
             throw new System.NotImplementedException();
         }
 
-        public AndroidPlatform(Camera gameCamera, float zDistance) : base(gameCamera, zDistance) { }
     }
 }

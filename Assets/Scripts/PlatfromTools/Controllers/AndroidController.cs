@@ -29,8 +29,5 @@ namespace PlatfromTools.Controllers
             return _current;
         }
 
-        public AndroidController(Camera camera, float zDistance) : base(camera, zDistance)
-        {
-        }
     }
 }

@@ -8,14 +8,11 @@ namespace PlatfromTools.Platforms
 {
     public class WindowsPlatform:AbstractPlatform
     {
-        public WindowsPlatform(Camera gameCamera, float zDistance) : base(gameCamera, zDistance)
-        {
-        }
 
 
         protected override AbstractController[] InitControllers()
         {
-            return new AbstractController[] {new MouseController(GameCamera,ZDistance)};
+            return new AbstractController[] {new MouseController()};
         }
 
         public override AbstractScreenInfo GetScreenInfo()

@@ -1,5 +1,4 @@
-namespace PlatfromTools.GameServices
-{
+namespace PlatfromTools.GameServices {
     public class AbstractGameService
     {
     }

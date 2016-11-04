@@ -8,12 +8,15 @@ namespace PlatfromTools.Controllers
 
 
         public override void Update()
-    {
+        {
+            Debug.Log("We update mouse data");
         if (Input.GetMouseButtonDown(0))
         {
             IsActivated = true;
-        }
-        else if ((!Input.GetMouseButton(0))&& IsActivated)
+                Debug.Log("Mouse is pressed down");
+
+            }
+            else if ((!Input.GetMouseButton(0))&& IsActivated)
         {
             IsActivated = false;
         }
@@ -28,14 +31,9 @@ namespace PlatfromTools.Controllers
 
         public override DataPoint[] GetInputs()
         {
-            if (IsActivated == false)
-                return null;
             return new[] { new DataPoint(_currentPostion,true)};
 
         }
 
-        public MouseController(Camera camera, float zDistance) : base(camera, zDistance)
-        {
-        }
     }
 }

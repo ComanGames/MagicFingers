@@ -1,18 +1,57 @@
-﻿using PlatfromTools.Controllers;
-using UnityEngine;
+﻿using System;
+using PlatfromTools.Controllers;
+using PlatfromTools.Platforms;
 
 namespace PlatfromTools
 {
-    public static class PlatformUtilities
+    public class PlatformUtilities
     {
 
-        public static AbstractController GetController(Camera camera,float zDitance)
+        #region static-part
+
+        public static PlatformUtilities RealInstance;
+
+        private static PlatformUtilities Instance
         {
-            AbstractController mouseController = new MouseController(camera,zDitance);
-
-            AbstractController andoridController = new AndroidController(camera,zDitance);
-
-            return mouseController;
+            get
+            {
+                if(RealInstance==null)
+                    return new PlatformUtilities();
+                return RealInstance;
+            }
         }
-    }
+
+
+        public static AbstractController GetController()
+        {
+            return Instance._platform.GetController();
+        }
+        
+
+        #endregion
+        #region non-staticPart
+
+        private AbstractPlatform _platform;
+        public PlatformUtilities()
+        {
+            _platform = InitPlatform();
+            RealInstance = this;
+        }
+
+        private AbstractPlatform InitPlatform()
+        {
+
+#if UNITY_EDITOR||UNITY_EDITOR_64
+            return new EditorPlatform();
+#endif
+
+#if UNITY_ANDROID 
+            return new AndroidPlatform();
+#endif
+            throw new Exception("Not supported platform");
+        }
+
+        #endregion
+
+       }
 }

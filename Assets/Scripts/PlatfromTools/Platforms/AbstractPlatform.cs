@@ -3,20 +3,15 @@ using PlatfromTools.Ads;
 using PlatfromTools.Controllers;
 using PlatfromTools.GameServices;
 using PlatfromTools.ScreenInfos;
-using UnityEngine;
 
 namespace PlatfromTools.Platforms
 {
     public abstract class AbstractPlatform
     {
-        protected Camera GameCamera;
-        protected float ZDistance;
         protected AbstractController[] Controllers;
 
-        protected AbstractPlatform(Camera gameCamera, float zDistance)
+        protected AbstractPlatform()
         {
-            GameCamera = gameCamera;
-            ZDistance = zDistance;
             // ReSharper disable once VirtualMemberCallInConstructor
             Controllers = InitControllers();
         }
@@ -26,12 +21,13 @@ namespace PlatfromTools.Platforms
         public virtual AbstractController GetController()
         {
             AbstractController result = null;
-            if (Controllers == null)
+            if (Controllers == null&&Controllers.Length>0)
                 throw new Exception("Controllers should be initialized to be used");
             for (int i = 0; i < Controllers.Length; i++)
             {
                 if (Controllers[i].IsActive())
                 {
+                    
                     result = Controllers[i];
                     break;
                 }
