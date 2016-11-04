@@ -12,6 +12,9 @@ namespace LevelDesignTools
         [Range(0,10)]
         public float LineFat = 2;
 
+        [Range(0,5)]
+        public float OutLineFat = 2;
+
         [Range(0,100)]
         public float CurveStep =0.1f;
 
@@ -25,6 +28,7 @@ namespace LevelDesignTools
         public static GameObject CurveDotInstance { get; set; }
         public static float SphereSize { get; set; }
         public static float LineFatSize { get; set; }
+        public static float OutLineFatSize { get; set; }
         public static float CurveStepSize { get; set; }
         public static int CircleStepSize { get; set; }
         public static float CubeSize { get; set; }
@@ -38,6 +42,7 @@ namespace LevelDesignTools
             CurveStepSize = CurveStep;
             CircleStepSize = CircleStep;
             CubeSize = SizeOfCube;
+            OutLineFatSize = OutLineFat;
         }
     }
 }

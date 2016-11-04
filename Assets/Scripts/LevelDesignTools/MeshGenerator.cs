@@ -26,12 +26,7 @@ namespace LevelDesignTools
             float stepAngle =( angle/(steps)) * Mathf.Deg2Rad;
 
             //Creating dots
-            for (int i = 0; i <= steps; i++)
-            {
-                Vector3 point = AngleToPoint(radius, currentAngle);
-                dotsList.Add(point);
-                currentAngle += stepAngle;
-            }
+            dotsList.AddRange(GetDotsAround(radius, steps, currentAngle, stepAngle));
             
             //Creating vertices
             for (int i = 2; i <= steps+1; i++)
@@ -49,6 +44,18 @@ namespace LevelDesignTools
             resultMesh.name = dotsList.Count+ Random.Range(-100000, 100000).ToString();
 
             return resultMesh;
+        }
+
+        public static List<Vector3> GetDotsAround(float radius, float steps, float startAngle, float stepAngle)
+        {
+            List<Vector3> dotsList = new List<Vector3>();
+            for (int i = 0; i <= steps; i++)
+            {
+                Vector3 point = AngleToPoint(radius, startAngle);
+                dotsList.Add(point);
+                startAngle += stepAngle;
+            }
+            return dotsList;
         }
 
         public static Vector3 AngleToPoint(float radius, float angle)
@@ -109,16 +116,11 @@ namespace LevelDesignTools
                 dotsList.Add(secondDot+margeCenter);
 
                 Vector3 dot = Vector3.Lerp(meshSquares[i].RightDown,meshSquares[i].RightUp,0.5f);
+
                 if (firstDot.x < dot.x)
-                {
                     vertices.AddRange(MeshSquare.SquareVerticesRight(i*2));
-                }
                 else
-                {
                     vertices.AddRange(MeshSquare.SquareVerticesRight((i)*2));
-                }
-
-
             }
             int j = meshSquares.Length-1;
             vertices.AddRange(MeshSquare.SquareVerticesRight(j * 2));
