@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Drawing;
 using LevelDesignTools;
 using UnityEngine;
 
@@ -9,7 +10,12 @@ namespace GameQuest
         public TaskGizmo GizmoTask;
         private FingerDot _currentDot;
         public Curve OurCurve;
-        public bool IsDrawing;
+        public VisualTask Visual; 
+
+
+        public void Awake()
+        {
+        }
 
         public void InitTask()
         {
@@ -18,19 +24,20 @@ namespace GameQuest
 
         public void OnDrawGizmos()
         {
-            if (IsDrawing) 
-                OurCurve = GizmoTask.UpdateGizmo(transform);
+            OurCurve = GizmoTask.UpdateGizmo(transform);
+            Visual.DrawCurve(OurCurve);
+            
         }
 
         public void StartNextTask()
         {
-            Queue<FingerDot> _dotsQueue = new Queue<FingerDot>();
+            Queue<FingerDot> dotsQueue = new Queue<FingerDot>();
             if (_currentDot != null)
                 _currentDot.Deactivate();
 
-            if (_dotsQueue.Count > 0)
+            if (dotsQueue.Count > 0)
             {
-                _currentDot = _dotsQueue.Dequeue();
+                _currentDot = dotsQueue.Dequeue();
 
                 _currentDot.Activate();
                 _currentDot.CallOnCollistion(StartNextTask);

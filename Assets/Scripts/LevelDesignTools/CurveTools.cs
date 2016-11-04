@@ -38,11 +38,9 @@ namespace LevelDesignTools
             return curvedPoints.ToArray();
         }
 
-        public  static Curve MakeSmoothCurve(FingerDot[] FingerDots, float smoothness)
+        public  static Curve MakeSmoothCurve(FingerDot[] fingerDots, float smoothness)
         {
-            Vector3[] arrayToCurve = new Vector3[FingerDots.Length];
-            for (int i = 0; i < FingerDots.Length; i++)
-                arrayToCurve[i] = FingerDots[i].transform.position;
+            var arrayToCurve = GetVectorFromPoints(fingerDots);
 
             Vector3[] outPutArr = new Vector3[arrayToCurve.Length];
             Array.Copy(arrayToCurve,outPutArr,arrayToCurve.Length);
@@ -64,13 +62,19 @@ namespace LevelDesignTools
             return new Curve(SmoothDots(outPutArr, smoothness));
         }
 
+        private static Vector3[] GetVectorFromPoints(FingerDot[] fingerDots)
+        {
+            var arrayToCurve = new Vector3[fingerDots.Length];
+            for (int i = 0; i < fingerDots.Length; i++)
+                arrayToCurve[i] = fingerDots[i].transform.position - fingerDots[i].transform.parent.position;
+            return arrayToCurve;
+        }
+
         public static Curve MakeLine(FingerDot[] fingerDots)
         {
-            List<Vector3> dots = new List<Vector3>();
-            foreach (FingerDot dot in fingerDots)
-                dots.Add(dot.transform.position);
+            Vector3[] points = GetVectorFromPoints(fingerDots);
 
-            return new Curve(dots.ToArray());
+            return new Curve(points);
     }
 
         public static Curve MakeThirdDotLine(FingerDot[] fingerDots,float smoothes)
@@ -82,19 +86,19 @@ namespace LevelDesignTools
                 FingerDot left = fingerDots[i];
                 FingerDot right = fingerDots[i+1];
 
-                dotsToSmooth.Add(left.transform.position);
+                dotsToSmooth.Add(left.transform.position - left.transform.parent.position);
                 if (left.RightDot != null)
-                    dotsToSmooth.Add(left.RightDot.position);
+                    dotsToSmooth.Add(left.RightDot.position - left.transform.parent.position);
 
                 if (right.LeftDot != null)
-                    dotsToSmooth.Add(right.LeftDot.position);
+                    dotsToSmooth.Add(right.LeftDot.position - right.transform.parent.position);
 
-                dotsToSmooth.Add(right.transform.position);
+                dotsToSmooth.Add(right.transform.position - right.transform.parent.position);
                 List<Vector3> smoothDots = SmoothDots(dotsToSmooth.ToArray(),smoothes).ToList();
                 smoothDots.RemoveAt(smoothDots.Count-1);
                 totalPoints.AddRange(smoothDots);
             }
-            totalPoints.Add(fingerDots[fingerDots.Length-1].transform.position);
+            totalPoints.Add(fingerDots[fingerDots.Length-1].transform.position - fingerDots[fingerDots.Length-1].transform.parent.position);
             return new Curve(totalPoints.ToArray());
         }
     }

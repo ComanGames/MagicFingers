@@ -13,6 +13,7 @@ namespace PlatfromTools.Controllers
 
          public virtual bool IsActive()
         {
+            //Todo: Controller update in is active cheeking
             Update();
             return IsActivated;
         }

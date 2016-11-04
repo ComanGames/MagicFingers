@@ -9,11 +9,9 @@ namespace PlatfromTools.Controllers
 
         public override void Update()
         {
-            Debug.Log("We update mouse data");
         if (Input.GetMouseButtonDown(0))
         {
             IsActivated = true;
-                Debug.Log("Mouse is pressed down");
 
             }
             else if ((!Input.GetMouseButton(0))&& IsActivated)

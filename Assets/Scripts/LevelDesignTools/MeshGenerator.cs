@@ -14,6 +14,48 @@ namespace LevelDesignTools
             mesh.name = "MeshFromLine - " + mesh.GetHashCode();
             return mesh;
         }
+
+        public static Mesh CircleMesh(float radius = 1f, float angle= 360,float steps = 16)
+        {
+            List<Vector3> dotsList = new List<Vector3>();
+            List<int> vertices = new List<int>();
+
+            //Circle center
+            dotsList.Add(Vector3.zero);
+            float currentAngle = 0;
+            float stepAngle =( angle/(steps)) * Mathf.Deg2Rad;
+
+            //Creating dots
+            for (int i = 0; i <= steps; i++)
+            {
+                Vector3 point = AngleToPoint(radius, currentAngle);
+                dotsList.Add(point);
+                currentAngle += stepAngle;
+            }
+            
+            //Creating vertices
+            for (int i = 2; i <= steps+1; i++)
+            {
+                vertices.Add(0);
+                vertices.Add(i);
+                vertices.Add(i-1);
+            }
+
+
+
+            Mesh resultMesh = new Mesh();
+            resultMesh.vertices = dotsList.ToArray();
+            resultMesh.triangles = vertices.ToArray();
+            resultMesh.name = dotsList.Count+ Random.Range(-100000, 100000).ToString();
+
+            return resultMesh;
+        }
+
+        public static Vector3 AngleToPoint(float radius, float angle)
+        {
+            return new Vector3(Mathf.Cos(angle),Mathf.Sin(angle),0) * radius;
+        }
+
         public static Mesh LinesFromDots(Curve curve, bool autoRotate=true)
         {
             List<MeshSquare> squares =new List<MeshSquare>();

@@ -11,7 +11,7 @@ namespace LevelDesignTools
     {
 
         public CurveType TypeOfCurve;
-        private CurveType _prevCurveType = CurveType.Line;
+        private CurveType _previousCurveType = CurveType.Line;
         private int _childCount;
         private Transform _transform;
         private FingerDot[] _fingerDots;
@@ -32,7 +32,6 @@ namespace LevelDesignTools
 
             foreach (FingerDot fingerDot in _fingerDots)
             {
-                Gizmos.DrawSphere(fingerDot.transform.position, GizmosSettings.SphereSize);
 
                 if (fingerDot.LeftDot != null && TypeOfCurve == CurveType.ThirdDot)
                     DrawExtrDots(fingerDot.LeftDot, fingerDot.transform);
@@ -45,7 +44,6 @@ namespace LevelDesignTools
         private static void DrawExtrDots(Transform extraDot, Transform transform)
         {
             Gizmos.color = Color.black;
-            Gizmos.DrawCube(extraDot.position, Vector3.one*GizmosSettings.CubeSize);
             Gizmos.DrawLine(transform.position, extraDot.position);
             Gizmos.color = Color.white;
         }
@@ -65,8 +63,6 @@ namespace LevelDesignTools
                     curve = CurveTools.MakeThirdDotLine(_fingerDots,GizmosSettings.CurveStepSize);
                     break;
             }
-            if (curve != null && curve.CurveDots != null)
-                _transform.GetComponent<MeshFilter>().mesh = MeshGenerator.MeshFromCurve(curve);
             return curve;
         }
 
@@ -75,10 +71,10 @@ namespace LevelDesignTools
         {
             if (_fingerDots == null)
                 _childCount = -1;
-            if (_prevCurveType != TypeOfCurve)
+            if (_previousCurveType != TypeOfCurve)
             {
-                WarkWithExtraDots();
-                _prevCurveType = TypeOfCurve;
+                WorkWithExtraDots();
+                _previousCurveType = TypeOfCurve;
             }
 
             if (_childCount != _transform.childCount)
@@ -95,21 +91,21 @@ namespace LevelDesignTools
                     }
                 }
                 _fingerDots = childDots.ToArray();
-                WarkWithExtraDots();
+                WorkWithExtraDots();
             }
         }
 
-        private void WarkWithExtraDots()
+        private void WorkWithExtraDots()
         {
-            if (_prevCurveType == CurveType.ThirdDot)
+            if (_previousCurveType == CurveType.ThirdDot)
             {
                 //Cleaning
                 foreach (FingerDot fingerDot in _fingerDots)
                 {
                     if (fingerDot.LeftDot != null)
-                        Object.DestroyImmediate(fingerDot.LeftDot.gameObject);
+                        fingerDot.LeftDot.gameObject.SetActive(false);
                     if (fingerDot.RightDot != null)
-                        Object.DestroyImmediate(fingerDot.RightDot.gameObject);
+                        fingerDot.RightDot.gameObject.SetActive(false);
                 }
             }
             if (TypeOfCurve == CurveType.ThirdDot)
@@ -119,7 +115,14 @@ namespace LevelDesignTools
                     GameObject leftDot;
                     GameObject rightDot;
 
-                    rightDot = CreateDot("Right");
+                    //Right dot
+                    if (_fingerDots[0].RightDot == null)
+                        rightDot = CreateDot("Right");
+                    else
+                        rightDot = _fingerDots[0].RightDot.gameObject;
+
+                    rightDot.SetActive(true);
+
                     rightDot.transform.position = Vector3.Lerp(_fingerDots[0].transform.position,
                         _fingerDots[1].transform.position, 0.5f);
                     rightDot.transform.parent = _fingerDots[0].transform;
@@ -127,25 +130,47 @@ namespace LevelDesignTools
 
                     for (int f = 1; f < _fingerDots.Length - 1; f++)
                     {
-                        leftDot = CreateDot("Left");
-                        rightDot = CreateDot("Right");
+                        //Left dot
+                        if (_fingerDots[f].LeftDot == null)
+                        {
+                            leftDot = CreateDot("Left");
+                            leftDot.transform.position = Vector3.Lerp(_fingerDots[f - 1].transform.position, _fingerDots[f].transform.position, 0.5f);
+                            leftDot.transform.parent = _fingerDots[f].transform;
+                            _fingerDots[f].LeftDot = leftDot.transform;
+                        }
+                        else
+                        {
+                            leftDot = _fingerDots[f].LeftDot.gameObject;
+                            leftDot.SetActive(true);
+                        }
+                        //Right dot
+                        if (_fingerDots[f].RightDot == null)
+                        {
+                            rightDot = CreateDot("Right");
+                            rightDot.transform.position = Vector3.Lerp(_fingerDots[f].transform.position, _fingerDots[f + 1].transform.position, 0.5f);
+                            rightDot.transform.parent = _fingerDots[f].transform;
+                            _fingerDots[f].RightDot = rightDot.transform;
+                        }
+                        else
+                        {
+                            rightDot = _fingerDots[f].RightDot.gameObject;
+                            rightDot.SetActive(true);
+                        }
 
-                        leftDot.transform.position = Vector3.Lerp(_fingerDots[f - 1].transform.position,
-                            _fingerDots[f].transform.position, 0.5f);
-                        rightDot.transform.position = Vector3.Lerp(_fingerDots[f].transform.position,
-                            _fingerDots[f + 1].transform.position, 0.5f);
 
-                        leftDot.transform.parent = _fingerDots[f].transform;
-                        rightDot.transform.parent = _fingerDots[f].transform;
 
-                        _fingerDots[f].LeftDot = leftDot.transform;
-                        _fingerDots[f].RightDot = rightDot.transform;
                     }
                     int i = _fingerDots.Length - 1;
-                    leftDot = CreateDot("Left");
+                    //Left dot
+                    if (_fingerDots[i].LeftDot == null)
+                        leftDot = CreateDot("Left");
+                    else
+                        leftDot = _fingerDots[i].LeftDot.gameObject;
 
-                    leftDot.transform.position = Vector3.Lerp(_fingerDots[i - 1].transform.position,
-                        _fingerDots[i].transform.position, 0.5f);
+                    leftDot.SetActive(true);
+
+
+                    leftDot.transform.position = Vector3.Lerp(_fingerDots[i - 1].transform.position, _fingerDots[i].transform.position, 0.5f);
 
                     leftDot.transform.parent = _fingerDots[i].transform;
 
@@ -156,7 +181,7 @@ namespace LevelDesignTools
 
         private GameObject CreateDot(string name)
         {
-            GameObject result = new GameObject();
+            GameObject result = Object.Instantiate(GizmosSettings.CurveDotInstance);
             result.name = name + " Dot";
             return result;
         }
