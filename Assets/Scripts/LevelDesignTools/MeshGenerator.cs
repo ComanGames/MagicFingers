@@ -1,16 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace LevelDesignTools
 {
     public static class MeshGenerator
     {
 
-        public static Mesh MeshFromCurve(Curve curve)
+        public static Mesh MeshFromCurve(Curve curve, float lineFatSize)
         {
             if (curve == null)
                 return null;
-            Mesh mesh = LinesFromDots(curve);
+            Mesh mesh = LinesFromDots(curve, lineFatSize);
             mesh.name = "MeshFromLine - " + mesh.GetHashCode();
             return mesh;
         }
@@ -63,27 +65,27 @@ namespace LevelDesignTools
             return new Vector3(Mathf.Cos(angle),Mathf.Sin(angle),0) * radius;
         }
 
-        public static Mesh LinesFromDots(Curve curve, bool autoRotate=true)
+        public static Mesh LinesFromDots(Curve curve, float lineFatSize, bool autoRotate=true)
         {
             List<MeshSquare> squares =new List<MeshSquare>();
             if (curve.CurveDots == null)
                 return null;
             CurveDot curveDot = curve.CurveDots[0];
             CurveDot curveDotNext = curve.CurveDots[1];
-            squares.Add(new MeshSquare(curveDot.Point, curveDotNext.Point, curveDot.Angle, GizmosSettings.LineFatSize));
+            squares.Add(new MeshSquare(curveDot.Point, curveDotNext.Point, curveDot.Angle, lineFatSize));
             for (int i = 1; i < curve.CurveDots.Length; i++)
             {
                  curveDot = curve.CurveDots[i-1];
                  curveDotNext = curve.CurveDots[i];
-                squares.Add(new MeshSquare(curveDot.Point,curveDotNext.Point,curveDot.Angle,GizmosSettings.LineFatSize));
+                squares.Add(new MeshSquare(curveDot.Point,curveDotNext.Point,curveDot.Angle,lineFatSize));
             }
 
-            Mesh joinedSquares = JoinSquers(squares.ToArray());
+            Mesh joinedSquares = JoinSquers(squares.ToArray(),lineFatSize);
 
             return joinedSquares;
         }
 
-        private static Mesh JoinSquers(MeshSquare[] meshSquares)
+        private static Mesh JoinSquers(MeshSquare[] meshSquares,float linefat)
         {
             List<Vector3> dotsList = new List<Vector3>();
             List<int> vertices = new List<int>();
@@ -109,8 +111,8 @@ namespace LevelDesignTools
 
 
                 Vector3 margeCenter=Vector3.Lerp(firstDot,secondDot,0.5f);
-                firstDot = (firstDot - margeCenter).normalized*(GizmosSettings.LineFatSize*0.5f);
-                secondDot = (secondDot - margeCenter).normalized*(GizmosSettings.LineFatSize*0.5f);
+                firstDot = (firstDot - margeCenter).normalized*(linefat*0.5f);
+                secondDot = (secondDot - margeCenter).normalized*(linefat*0.5f);
 
                 dotsList.Add(firstDot+margeCenter);
                 dotsList.Add(secondDot+margeCenter);
@@ -134,5 +136,11 @@ namespace LevelDesignTools
             resultMesh.triangles = vertices.ToArray();
             return resultMesh;
         }
+        public static Mesh[] MeshLineToSquares(Mesh mesh)
+        {
+            
+            throw new NotImplementedException();
+        }
+
     }
 }

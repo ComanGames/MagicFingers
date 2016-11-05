@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using LevelDesignTools;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ namespace Drawing
         public GameObject EndPoint;
         public GameObject Line;
         public GameObject OutLine;
-        public Material ColorMaterial;
+        public Material MainMaterial;
+        public Material OutlineMaterial;
 
         public void Start()
         {
@@ -22,7 +24,6 @@ namespace Drawing
             if (curve != null && curve.CurveDots != null)
             {
 
-
                 int last = curve.CurveDots.Length - 1;
 
                 MeshFilter outlineMesh = OutLine.GetComponent<MeshFilter>();
@@ -31,7 +32,7 @@ namespace Drawing
                 MeshFilter lineMesh = Line.GetComponent<MeshFilter>();
 
                 // Mesh generation
-                lineMesh.mesh = MeshGenerator.MeshFromCurve(curve);
+                lineMesh.mesh = MeshGenerator.MeshFromCurve(curve, GizmosSettings.LineFatSize);
                 startPointMesh.mesh = MeshGenerator.CircleMesh(GizmosSettings.LineFatSize/2f,180,GizmosSettings.CircleStepSize);
                 endPointMesh.mesh = MeshGenerator.CircleMesh(GizmosSettings.LineFatSize/2f,180,GizmosSettings.CircleStepSize);
 
@@ -45,37 +46,51 @@ namespace Drawing
                 EndPoint.transform.localPosition = curve.CurveDots[last].Point;
                 EndPoint.transform.eulerAngles =endPointAngle;
 
-                //
-
+                //drawing outline
                 float outLineDistance = (GizmosSettings.LineFatSize +GizmosSettings.OutLineFatSize)/2.0f;
 
-                List<Vector3> outlineDots = new List<Vector3>(); 
-                outlineDots.AddRange(OutLineCurveLeft(curve,outLineDistance));
+                List<Vector3> outlineDots = new List<Vector3>();
+                outlineDots.AddRange(OutLineCircle(StartPoint.transform.position,outLineDistance,curve.CurveDots[0].Angle.z+90, 180, GizmosSettings.CircleStepSize));
+                outlineDots.RemoveAt(outlineDots.Count-1);
+                outlineDots.AddRange(OutLineCurveLeft(curve,outLineDistance,-90));
+                List<Vector3> outLineCircle = OutLineCircle(EndPoint.transform.position, outLineDistance, curve.CurveDots[last].Angle.z + -90, 180, GizmosSettings.CircleStepSize);
+                outLineCircle.RemoveAt(0);
+                outLineCircle.RemoveAt(outLineCircle.Count-1);
+                outlineDots.AddRange(outLineCircle.ToArray());
 
-                outlineDots.AddRange(OutLineCircle(StartPoint.transform.position,outLineDistance, 180, GizmosSettings.CircleStepSize));
+                outlineDots.AddRange(OutLineCurveLeft(curve,outLineDistance,90).Reverse());
 
-                foreach (Vector3 pointVector3 in outlineDots)
-                    Gizmos.DrawCube(pointVector3, Vector3.one);
+                //Todo:fix first and last part of mesh
+                OutLine.GetComponent<MeshFilter>().mesh = MeshGenerator.MeshFromCurve(new Curve(outlineDots.ToArray()), GizmosSettings.OutLineFatSize);
 
-                OutLine.GetComponent<MeshRenderer>().material = ColorMaterial;
-                StartPoint.GetComponent<MeshRenderer>().material = ColorMaterial;
-                EndPoint.GetComponent<MeshRenderer>().material = ColorMaterial;
+                OutLine.GetComponent<MeshRenderer>().material = MainMaterial;
+                StartPoint.GetComponent<MeshRenderer>().material =MainMaterial;
+                EndPoint.GetComponent<MeshRenderer>().material = MainMaterial;
+                OutLine.GetComponent<MeshRenderer>().material = OutlineMaterial;
 
             }
         }
 
         private List<Vector3> OutLineCircle(Vector3 startPosition, float outLineDistance,float startAngle, float totalAngle, int stepCount)
         {
+            float stepAngle = (totalAngle/stepCount)*Mathf.Deg2Rad;
             //Todo:Done outlining
-            List<Vector3> circleDots = MeshGenerator.GetDotsAround(outLineDistance,stepCount,startAngle,)
+            List<Vector3> circleDots = MeshGenerator.GetDotsAround(outLineDistance, stepCount, startAngle*Mathf.Deg2Rad, stepAngle);
+
+            //Removing two first and last one
+            for (int i = 0; i < circleDots.Count; i++)
+            {
+                circleDots[i] += startPosition;
+            }
+            return circleDots;
         }
 
-        private Vector3[] OutLineCurveLeft(Curve curve,float distance)
+        private Vector3[] OutLineCurveLeft(Curve curve,float distance,float angle)
         {
            List<Vector3> result= new List<Vector3>();
             for (int i = 0; i < curve.CurveDots.Length; i++)
             {
-                Vector3 dot = MeshGenerator.AngleToPoint(distance, (curve.CurveDots[i].Angle.z+90)*Mathf.Deg2Rad);
+                Vector3 dot = MeshGenerator.AngleToPoint(distance, (curve.CurveDots[i].Angle.z+angle)*Mathf.Deg2Rad);
                 dot += curve.CurveDots[i].Point;
                 result.Add(dot);
             }
