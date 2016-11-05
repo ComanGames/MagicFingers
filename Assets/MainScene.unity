@@ -8421,7 +8421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50008786bf9df2d4ba57f6a73f276f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToFallow: {fileID: 0}
+  ObjectToFallow: {fileID: 499003110}
   GizmoTask:
     TypeOfCurve: 2
   OurCurve:
@@ -8515,6 +8515,7 @@ MonoBehaviour:
     - Point: {x: 33.38, y: -3.63, z: 0}
       Angle: {x: 0, y: 0, z: 7.382805}
   Visual: {fileID: 758908603}
+  DistanceToStart: 10
 --- !u!1 &1659467009
 GameObject:
   m_ObjectHideFlags: 0
