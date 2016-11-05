@@ -1,13 +1,15 @@
 ﻿using System;
+using LevelDesignTools;
 using UnityEngine;
 
 namespace GameQuest
 {
     public class FingerDot : MonoBehaviour
     {
+        public Transform LeftDot;
+        public Transform RightDot;
         public bool IsActive { get; set; }
         private Action _actionToCall;
-        
 
         public void Start()
         {
@@ -25,7 +27,6 @@ namespace GameQuest
 
         public void OnDrawGizmos()
         {
-            Gizmos.DrawSphere(transform.position,GizmosSettings.SphereSize);
         }
 
         public void CallOnCollistion(Action actionToDo)
