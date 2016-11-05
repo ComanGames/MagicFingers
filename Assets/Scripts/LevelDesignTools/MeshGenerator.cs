@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -138,8 +137,27 @@ namespace LevelDesignTools
         }
         public static Mesh[] MeshLineToSquares(Mesh mesh)
         {
-            
-            throw new NotImplementedException();
+            List<Mesh> meshes = new List<Mesh>();
+            for (int i = 1; i < mesh.vertices.Length/2; i++)
+            {
+                Mesh tempMesh = new Mesh();
+
+                int r = i*2;
+                //Vertices
+                List<Vector3> vertices = new List<Vector3>(4);
+                vertices.Add(mesh.vertices[r-2]);
+                vertices.Add(mesh.vertices[r-1]);
+                vertices.Add(mesh.vertices[r]);
+                vertices.Add(mesh.vertices[r+1]);
+                tempMesh.vertices = vertices.ToArray();
+
+                tempMesh.triangles = mesh.triangles.SubArray(0, 6);
+
+                tempMesh.name = "line piece " + (i-1);
+
+                meshes.Add(tempMesh);
+            }
+            return meshes.ToArray();
         }
 
     }

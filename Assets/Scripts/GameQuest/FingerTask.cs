@@ -7,14 +7,17 @@ namespace GameQuest
 {
     public class FingerTask : MonoBehaviour
     {
+        public Transform ObjectToFallow;
         public TaskGizmo GizmoTask;
         private FingerDot _currentDot;
         public Curve OurCurve;
-        public VisualTask Visual; 
+        public VisualTask Visual;
+        private bool _isFallow;
+        private int _currentIndex;
 
-
-        public void Awake()
+        public void Start()
         {
+           Visual.SetActiveAt(0,OurCurve.CurveDots[0]); 
         }
 
         public void InitTask()

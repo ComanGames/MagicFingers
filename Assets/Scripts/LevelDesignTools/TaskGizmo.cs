@@ -33,11 +33,13 @@ namespace LevelDesignTools
             foreach (FingerDot fingerDot in _fingerDots)
             {
 
-                if (fingerDot.LeftDot != null && TypeOfCurve == CurveType.ThirdDot)
+#pragma warning disable 618
+                if (fingerDot.LeftDot != null && TypeOfCurve == CurveType.ThirdDot&&fingerDot.LeftDot.gameObject.active)
                     DrawExtrDots(fingerDot.LeftDot, fingerDot.transform);
 
-                if (fingerDot.RightDot != null && TypeOfCurve == CurveType.ThirdDot)
+                if (fingerDot.RightDot != null && TypeOfCurve == CurveType.ThirdDot&&fingerDot.RightDot.gameObject.active)
                     DrawExtrDots(fingerDot.RightDot, fingerDot.transform);
+#pragma warning restore 618
             }
         }
 
